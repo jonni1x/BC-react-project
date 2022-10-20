@@ -1,38 +1,250 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.header-icon {
+  font-size: 2.4rem;
+  background-color: transparent;
+  border: none;
+  color: rgb(22, 21, 21);
+  cursor: pointer;
+  height: 30px;
+}
+
+.header a {
+  color: black;
+  text-decoration: none;
+}
+
+.header input {
+  width: 205px;
+  height: 35px;
+  border-radius: 15px;
+  border: none;
+  padding-left: 10px;
+}
+
+.movieLinks {
+  text-align: left;
+}
+
+.movieLinks a{
+  display: flex;
+  height: 50px;
+  text-align: justify;
+}
+
+.movieLinks a:hover {
+  background-color: rgba(255, 255, 255, .9);
+}
+
+.home {
+  height: 110vh;
+  background-color: rgba(22, 21, 21, .2);
+}
+
+.home img {
+  width: 100%;
+  object-fit: cover;
+  height: 70vh;
+  background-attachment: fixed;
+}
+
+.home p {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 60px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.popular-movies h2 {
+  padding-top: 150px;
+  text-align: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.top-rated-movies h2 {
+  padding-top: 150px;
+  text-align: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.movies {
+  width: 73%;
+  margin: 150px auto;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.movies .movie {
+  min-height: 400px;
+  width: 300px;
+}
+
+.movies .movie img {
+  width: 250px;
+  height: 340px;
+  object-fit: cover;
+}
+
+.movies .movie h4 {
+  width: 200px;
+  word-wrap: break-word;
+}
+
+.movies .movie div {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.movies .movie div .icon {
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+.orange {
+  color: orange;
+}
+
+.yellowBg {
+  background-color: yellow;
+}
+
+.movie-details div * {
+  margin: 20px 0;
+}
+
+.movie-details div h2 {
+  text-align: center;
+}
+
+
+.movie-details div img {
+  width: 100%;
+  height: 50vh;
+  object-fit: contain;
+}
+
+.movie-details div p {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.movie-details div span {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+}
+
+.related-movies {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 120px;
+  margin: 0 auto;
+}
+
+.search-movies h2 {
+  text-align: center;
+  margin-top: 30px;
+  text-decoration: underline;
+  font-size: 2rem;
+  color: black;
+  font-family: monospace;
+}
+
+.search-movies .movies {
+  width: 73%;
+  margin: 150px auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.search-movies .movie {
+  height: 400px;
+  width: 300px;
+}
+
+.search-movies .movie a img {
+  width: 250px;
+  height: 340px;
+  object-fit: cover;
+}
+
+.search-movies .movie h4 {
+  width: 200px;
+  word-wrap: break-word;
+}
+
+.search-movies .movie .icon {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
+
+.search-movies .movie div {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.watch-later {
+  width: 73%;
+  margin: 150px auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.watch-later div img {
+  width: 250px;
+  height: 340px;
+  object-fit: cover;
+}
+
+.pagination {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: -80px auto 50px;
 }
 
-.App-link {
-  color: #61dafb;
+.pagination button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.pagination span {
+  cursor: pointer;
+}
+
+footer {
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: aliceblue;
+  box-shadow: 1px 1px 10px rgba(22, 21, 21, .7);
+}
+
+footer ul li {
+  list-style: none;
+  font-size: .9rem;
 }
