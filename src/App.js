@@ -17,7 +17,10 @@ function App() {
   const [value, setValue] = useState('')
 
   const addToWatchLater = (el) => {
+    console.log(el)
     setWatchLater([...watchLater, el]);
+
+    console.log(watchLater)
   }
 
   const searchMovies = (val) => {

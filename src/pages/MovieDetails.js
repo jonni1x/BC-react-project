@@ -1,56 +1,42 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import Movie from '../components/Movie';
+import Fetch from '../functions/Fetch';
+import FetchDetails from '../functions/FetchDetails';
 
-const MovieDetails = () => {
+const MovieDetails = ({addToWatchLater}) => {
     const { id } = useParams();
-    const img_url = 'https://image.tmdb.org/t/p/w500/';
-    const relatedMoviesAPI = `https://api.themoviedb.org/3/movie/${id}/similar?api_key=49a84267a7ee35126c537015b2e94e2b&language=en-US&page=1`
-    const detailsAPI = `https://api.themoviedb.org/3/movie/${id}?api_key=49a84267a7ee35126c537015b2e94e2b&language=en-US`
-    const [movie, setMovie] = useState({});
-    const [relatedMovies, setRelatedMovies] = useState([]);
 
-    useEffect(() => {
-        fetch(detailsAPI)
-            .then(res => res.json())
-            .then(data => {
-              setMovie(data)
-            })
-            .catch(e => {
-                console.log(e.message)
-            }) 
-    }, []);
+    //Fetch Data
+    const detailsAPI = `https://api.themoviedb.org/3/movie/${id}?api_key=49a84267a7ee35126c537015b2e94e2b&language=en-US`;
+    const {data, isLoading, error } = FetchDetails(detailsAPI);
 
-    useEffect(() => {
-      fetch(relatedMoviesAPI)
-        .then(res => res.json())
-        .then(data => setRelatedMovies(data.results.slice(0, 3)))
-    }, [])
+    const relatedMoviesAPI = `https://api.themoviedb.org/3/movie/${id}/similar?api_key=49a84267a7ee35126c537015b2e94e2b&language=en-US&page=1`;
+    const {data: relatedMovies} = Fetch(relatedMoviesAPI);
 
   return (
     <div className='movie-details'>
+
+        {isLoading && <div>Loading ...</div>}
+        {error && <div>{error}</div>}
+
         { 
         <>
-          <div>
-            <h2>{movie.title}</h2>
-            <img src={img_url+movie.backdrop_path} alt={movie.title} />
-            <p>{movie.overview}</p>
-            <span>Vote Average: {movie.vote_average}</span>
-          </div>
-          <h2 style={{'textAlign': 'center'}}>Related Movies</h2>
+          <Movie key={data.id} id={data.id} image={data.backdrop_path} vote_average={data.vote_average} title={data.title} addToWatchLater={addToWatchLater}/>
+
           <div className='related-movies'>
-            {relatedMovies.map(movie => {
+            {relatedMovies.slice(0, 3).map(movie => {
                const {poster_path : image,
                 original_title: title,
                 id } = movie
 
-                return (
-                  <div className='movie' key={id}>
-                      <Link to={`/movie${id}`}>
-                        <img src={img_url+image} alt={id} />
-                      </Link>
-                        <h4>{title}</h4>
-                  </div>
-              )  
+                return <Movie
+                        key={id} 
+                        id={id} 
+                        image={image} 
+                        vote_average={movie.vote_average} 
+                        title={title} 
+                        addToWatchLater={addToWatchLater}/> 
               })
             }
           </div>

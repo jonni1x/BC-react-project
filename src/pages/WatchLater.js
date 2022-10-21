@@ -1,6 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
-
+import Movie from '../components/Movie';
 
 const WatchLater = ({array}) => {
   console.log(array)
@@ -12,15 +11,7 @@ const WatchLater = ({array}) => {
           const image = movie.querySelector('a img').src;
           const title = movie.querySelector('h4').textContent;
           const id = movie.querySelector('a img').alt;
-          return (
-            <div className='movie' key={id}>
-              <Link to={`/movie${id}`}>
-                <img src={image} alt={title} />
-              </Link>
-                  
-                <h4>{title}</h4>
-            </div>
-             )
+          return <Movie key={id} id={id} title={title} image={image}/>
       })}
     </div>
   )
